@@ -43,12 +43,15 @@ License
 
 MOPAC-ML is licensed under the same license as MOPAC, which is [LGPLv3](https://www.gnu.org/licenses/lgpl-3.0).
 
+The MOPAC executable provided here is licensed under [LGPLv3](https://www.gnu.org/licenses/lgpl-3.0), with [sources available separately](https://github.com/Honza-R/mopac/tree/pm6-ml).
+
 The models are licensed under the Academic Software Licence, [enclosed in the models directory](models/LICENSE.md).
 
 How to Cite
 -----------
 
-The PM6-ML method is described in the preprint:
+The PM6-ML method is described in the paper:
 
-Nováček M, Řezáč J. *PM6-ML: The Synergy of Semiempirical Quantum Chemistry and Machine Learning Transformed into a Practical Computational Method.* ChemRxiv. 2024; [doi:10.26434/chemrxiv-2024-3nwwv-v2](https://doi.org/10.26434/chemrxiv-2024-3nwwv-v2)
+Nováček M., Řezáč J., *J. Chem. Theory Comput.* **2005**. [DOI: 10.1021/acs.jctc.4c01330](https://doi.org/10.1021/acs.jctc.4c01330)
 
+An earlier version is also available as a [preprint](https://doi.org/10.26434/chemrxiv-2024-3nwwv-v2).
