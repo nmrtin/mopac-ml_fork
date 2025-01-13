@@ -50,8 +50,7 @@ The models are licensed under the Academic Software Licence, [enclosed in the mo
 How to Cite
 -----------
 
-The PM6-ML method is described in the paper:
-
+The PM6-ML method is described in the paper:<br>
 Nováček M., Řezáč J., *J. Chem. Theory Comput.* **2005**. [DOI: 10.1021/acs.jctc.4c01330](https://doi.org/10.1021/acs.jctc.4c01330)
 
 An earlier version is also available as a [preprint](https://doi.org/10.26434/chemrxiv-2024-3nwwv-v2).
