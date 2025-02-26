@@ -172,7 +172,7 @@ def write_output(energy, gradient=None, pipe_out="fifo_in.tmp"):
     f_out.close()
 
 def calculation():
-    el_to_z = {35: 1, 6: 3, 17: 7, 9: 9, 1: 10, 53: 12, 7: 17, 8: 21, 15: 23, 16: 26}
+    z_to_atype = {35: 1, 6: 3, 20: 5, 17: 7, 9: 9, 1: 10, 53: 12, 19: 13, 3: 14, 12: 15, 7: 17, 11: 19, 8: 21, 15: 23, 16: 26}
     while True:
         skip = []
         elements, coords, do_grad = wait_for_input()
@@ -184,18 +184,17 @@ def calculation():
         )
         dftd3_corr = res.get("energy") * HARTREE2KJMOL
         elem_out = []
-        for num, data in enumerate(elements):
-            if data not in el_to_z:  # unknown atom skipping
-                skip.append(num)
-                coords.pop(num)
+        for index, z in enumerate(elements):
+            if z not in z_to_atype:  # unknown atom skipping
+                skip.append(index)
+                print(f"Skipping unknown atom (atomic number {z}, index {index})", file=sys.stderr)
             else:
-                elem_out.append(el_to_z[data])
-        
+                elem_out.append(z_to_atype[z])
+        coords = np.delete(coords,skip,axis=0)
         elements = elem_out
 
         # Energy calculation
         ene, forces = energy_forces(skip, elements, coords, model)
-
         # ... and gradient
         dftd3_grad = res.get("gradient") * HARTREE2KJMOL /BOHR2ANGSTROM
         if do_grad:
@@ -209,10 +208,7 @@ def calculation():
 
 def energy_forces(skip, elem, geom, model):
     if elem == []:  # empty geom - noble gases
-        return (
-            torch.tensor(0, dtype=torch.float32),
-            torch.tensor([], dtype=torch.float32),
-        )
+        return (0, [[0, 0, 0]] * len(skip))
     types = torch.tensor(elem, dtype=torch.long)
     types = types.to(device)
     pos = torch.tensor(geom, dtype=torch.float32)
