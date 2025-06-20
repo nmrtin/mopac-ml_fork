@@ -193,6 +193,7 @@ def calculation():
         )
         dftd3_corr = res.get("energy") * HARTREE2KJMOL
         # Energy calculation
+        elements = [ z_to_atype[atom] for atom in elements ] 
         ene, forces = energy_forces(elements, coords, model)
         # ... and gradient
         dftd3_grad = res.get("gradient") * HARTREE2KJMOL /BOHR2ANGSTROM
